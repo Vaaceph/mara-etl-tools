@@ -14,6 +14,7 @@ CREATE TABLE time.day (
   quarter_short_name TEXT     NOT NULL,
   month_id           INTEGER  NOT NULL,
   month_name         TEXT     NOT NULL,
+  month_short_id     INTEGER  NOT NULL,
   month_short_name   TEXT     NOT NULL,
   week_id            INTEGER  NOT NULL,
   week_name          TEXT     NOT NULL,
@@ -28,6 +29,7 @@ SELECT util.add_index('time', 'day', column_names := ARRAY ['year_id']);
 SELECT util.add_index('time', 'day', column_names := ARRAY ['iso_year_id']);
 SELECT util.add_index('time', 'day', column_names := ARRAY ['quarter_id']);
 SELECT util.add_index('time', 'day', column_names := ARRAY ['month_id']);
+SELECT util.add_index('time', 'day', column_names := ARRAY ['month_short_id']);
 SELECT util.add_index('time', 'day', column_names := ARRAY ['week_id']);
 SELECT util.add_index('time', 'day', column_names := ARRAY ['day_of_week_id']);
 SELECT util.add_index('time', 'day', column_names := ARRAY ['day_of_month_id']);
@@ -92,6 +94,7 @@ INSERT INTO time.day
     to_char(d, '"Q"Q')                AS quarter_short_name,
     to_char(d, 'YYYYMM') :: INTEGER   AS month_id,
     to_char(d, 'YYYY Mon')            AS month_name,
+    to_char(d, 'MM') :: INTEGER       AS month_short_id,
     to_char(d, 'Mon')                 AS month_short_name,
     to_char(d, 'IYYYIW') :: INTEGER   AS week_id,
     to_char(d, 'IYYY "-" "CW "IW')    AS week_name,
