@@ -100,7 +100,7 @@ INSERT INTO time.day
     to_char(d, 'IYYY "-" "CW "IW')    AS week_name,
     to_char(d, '"CW "IW')             AS week_short_name,
     to_char(d, 'ID') :: SMALLINT      AS day_of_week_id,
-    to_char(d, 'Day')                 AS day_of_week_name,
+    trim(to_char(d, 'Day'))           AS day_of_week_name,
     to_char(d, 'DD') :: SMALLINT      AS day_of_month_id,
     d                                 AS _date
 
